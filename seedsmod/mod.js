@@ -4,12 +4,18 @@
         id = "seeds";
         name = "Seeds Mod";
         chatName = "Seeds";
-        version = 1;
+        version = 2;
 
         onGameStart = (game) => {
 			
 			game.addImage("tools/seeds-tree", game.getModResource("tool-seeds-tree.png"));
 			game.addTool("tools/seeds-tree", 0, "seeds-tree", true);
+			
+			game.addImage("tools/seeds-grass", game.getModResource("tool-seeds-grass.png"));
+			game.addTool("tools/seeds-grass", 0, "seeds-grass", true);
+			
+			game.addImage("tools/seeds-flower", game.getModResource("tool-seeds-flower.png"));
+			game.addTool("tools/seeds-flower", 0, "seeds-flower", true);
 			
         };
 
@@ -34,6 +40,38 @@
 					game.setBlock(x - 1, y - 3 - i, layer, 5);
 					game.setBlock(x, y - 3 - i, layer, 5);
 					game.setBlock(x + 1, y - 3 - i, layer, 5);
+					
+				}
+				
+				game.playSfx("jump");
+				
+			}
+			
+			if (toolId === "seeds-grass"){
+				
+				if(game.getBlock(x, y + 1, layer) === 2){
+					
+					if(game.getBlock(x, y, layer) === 0){
+						
+						game.setBlock(x, y, layer, 9 + Math.floor(Math.random() * 4));
+						
+					}
+					
+				}
+				
+				game.playSfx("jump");
+				
+			}
+			
+			if (toolId === "seeds-flower"){
+				
+				if(game.getBlock(x, y + 1, layer) === 2){
+					
+					if(game.getBlock(x, y, layer) === 0){
+						
+						game.setBlock(x, y, layer, 13 + Math.floor(Math.random() * 3));
+						
+					}
 					
 				}
 				
